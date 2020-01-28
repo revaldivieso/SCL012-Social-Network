@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bitácora</title>
+<html lang="en">
 
-    <!-- update the version number as needed -->
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bitácora</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css?family=Montserrat|Nanum+Gothic|Quicksand&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div id="logo">
+      <img src="img/logoOcre.png" class="logo"/>
+    </div>
+    <div id="login"></div>
+    <div id="home"></div>
+    <div id="perfil"></div>
+  </header>
 
-    <link rel="stylesheet" href="style.css" />
+  <section>
+    <div id="load"></div>
+  </section>
 
-  </head>
-  <body>
-     <div id="message">
-     
-    <!--  <h2>Welcome</h2>
-      <h1>Firebase Hosting Setup Complete</h1>
-      <p>You're seeing this because you've successfully setup Firebase Hosting. Now it's time to go build something extraordinary!</p>
-      <a target="_blank" href="https://firebase.google.com/docs/hosting/">Open Hosting Documentation</a>
-    </div>  -->
-    <p id="load">Firebase SDK Loading&hellip;</p>
-    <div id="root"></div>
+  <div id="root"></div>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-analytics.js"></script>
+  <script type="module" src="./main.js"></script>
 
- 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-app.js"></script>
+</body>
 
-<!-- TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries -->
-     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-auth.js"></script>
-     <script src="https://www.gstatic.com/firebasejs/7.7.0/firebase-database.js"></script>
-
-   <script type="module" src="main.js"></script>
-  </body>
 </html>

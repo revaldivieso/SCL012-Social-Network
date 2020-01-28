@@ -1,14 +1,34 @@
-s
+* {
+    margin: 0;
+    padding: 0;
+}
 
 body{
-    background-color: #245c1d;
+    background-image: url("img/trekking22.jpg");
+    background-repeat: no-repeat; 
+    background-size: cover; 
+    background-attachment: fixed;  
+    font-family:'BenchNine', sans-serif !important;
+  }
+
+.logo {
+    margin: 0 auto;
+    width: 15%;
+    padding-top: 40px;
+    padding-bottom: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+.list {
+    list-style: none;
 }
 
 #root {
     height: 100%; 
     display: flex;
     flex-flow: column;
-   }
+}
 
 .icon {
     max-width: 25px;
@@ -17,114 +37,294 @@ body{
     display: inline-block;
 }
 
-
-.login {
-    padding: 0 10px;
-    background-color: white;
-    display: block;
-    border-radius: 10px;
-    margin: 10px;
-    width: 250px;
-    cursor: pointer;
-    margin: 10px auto;
-    
-    
+.form-login {
+    margin: 0 auto;
+    width: 350px;
+    justify-content: center;
+    color: #f2f2f2;
 }
 
-
-#newAccount {
-    cursor: pointer;
-    text-decoration-line: underline;
-}
-
-
-.login p {
-    margin: 1em;
-    font-family: 'Roboto', sans-serif;
-    display: inline-block;
-    color: #737373
-}
-
-.login.Facebook p{
-    margin: 1em 0.4em;
-}
-
-
-
-.logo{
-    max-width: 280px;
-    
-    display: block;
-    background-color:  #245c1d;
-    margin:auto;
-
-
-    }
-
-.logo img{
- width: 100%;
- height: 100%;
- }
-   
-
-#logins {
-    margin-top: 10px;
-    border: 0.3em solid #ffa100;
-    background-color:  #245c1d;
-    border-radius: 10px;
-    display: block;
-    margin: auto;
-}
-
-#createAccount {
-    display: block;
-    margin: auto;
-    margin-top: 10px;
+.text-box {
+    align-content: center;
+    width: 100%;
+    overflow: hidden;
+    font-size: 20px;
+    padding: 8px 0;
+    margin: 8px 0;
+    border-bottom: 1px solid #ecf0f1;
 }
 
 .inputLogin {
-    width: 250px;
+    border: none;
+    outline: none;
+    background: none;
+    width: 200px;
     display: block;
-    margin: 10px auto;
     padding: 12px;
-    border-radius: 10px;
-    font-family: 'Roboto', sans-serif !important;
-    border: 0.5px solid rgb(11, 116, 20);
-
+    color: #ecf0f1;
+    font-size: 15px;
+    font-family: 'Quicksand', sans-serif;
+    width: 90%;
 }
 
 .inputLogin:focus {
     outline: none;
-    border: 2px solid rgb(11, 116, 20);
 }
 
-.btnLogin {
-    display: block;
-    margin: 10px auto;
-    font-family: 'Roboto', sans-serif;
-    border: 0.5px solid rgb(63, 199, 36);
+::-webkit-input-placeholder { 
+    color: #ecf0f19c; 
+} 
+
+.login {
+    color: #34495e;
     padding: 10px;
-    background: #ecded6;
-    border-radius: 10px;
-    color: rgb(11, 89, 116);
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #ecf0f1;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
     font-weight: bold;
+    display: block;
+    border-radius: 10px;
+    border-style: none;
+    width: 300px;
+    cursor: pointer;
+    margin: 10px auto;
+    margin-top: 20px;
 }
 
-.btnLogin:hover {
-    color: white;
-    background-color: rgb(114, 116, 11);
+.login:hover {
+    background-color: #cccccc;
 }
 
-.btnLogin:focus{
-    outline: none;
-  
+.register {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    padding: 10px;
+    margin: auto;
+    margin-top: 50px;
+    cursor: pointer;
+}
+
+.register:hover {
+    background-color: #cccccc;
+    color: #34495e;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+.loginGoogle p {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    display: inline;
+    color: #ecf0f1;
+    margin: auto;
+    cursor: pointer;
+}
+
+li span p:hover {
+    padding: 10px;
+    background-color: #cccccc;
+    color: #34495e;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+/* Estilos html registro */
+.registerBox {
+    margin: 10px auto;
+    width: 500px;
+    justify-content: center;
 }
 
 .fontRoot {  
-    color: rgb(250, 251, 252);
+    color: #ecf0f1;
     text-align: center;
-    margin-top: 5px; 
-    cursor: pointer; 
+    margin-bottom: 10px; 
+    font-family: 'Quicksand', sans-serif;
+    padding: 20px;
 } 
+
+.inputRegister {
+    border: none;
+    outline: none;
+    background: none;
+    color: #ecf0f1;
+    font-family: 'Quicksand', sans-serif;
+    align-content: center;
+    width: 90%;
+    overflow: hidden;
+    font-size: 15px;
+    padding: 12px;
+    margin: 10px;
+    border-bottom: 1px solid #ecf0f1;
+}
+
+.btnLogin {
+    color: #34495e;
+    padding: 10px;
+    background-color: #ecf0f1;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+    display: block;
+    border-radius: 10px;
+    border-style: none;
+    width: 300px;
+    cursor: pointer;
+    margin: 10px auto;
+    margin-top: 30px;
+    margin-bottom: 50px;
+}
+
+.btnLogin:hover {
+    background-color: #cccccc;
+}
+
+.comeback {  
+    color: #ecf0f1;
+    text-align: center;
+    margin: 10px; 
+    font-family: 'Quicksand', sans-serif;
+    padding: 10px;
+    font-size: 14px;
+    text-decoration-line: underline;
+    cursor: pointer;
+} 
+
+.comeback:hover {
+    background-color: #cccccc;
+    color: #34495e;
+    font-weight: bold;
+    border-radius: 20px;
+}
+
+
+/* Style the top navigation bar */
+.topnav {
+    overflow: hidden;
+    background-color: #333;
+}
+
+  /* Style the topnav links */
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+  
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+
+  /* Responsive layout - when the screen is less than 800px wide */
+@media screen and (max-width: 800px) {
+    .leftcolumn, .rightcolumn {   
+      width: 100%;
+      padding: 0;
+    }
+}
+  
+  /* Responsive layout - when the screen is less than 360px wide */
+  @media all and (max-width: 360px) {
+    .logo {
+        margin: 0 auto;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+}
+
+    .fontRoot {  
+        color: #ecf0f1;
+        text-align: center;
+        margin-bottom: 10px; 
+        font-family: 'Quicksand', sans-serif;
+        font-size: 12px;
+        padding: 20px;
+    } 
+
+    .registerBox {
+        margin: 10px auto;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .topnav a {
+      float: none;
+      width: 100%;
+    }
+
+}/* Column container */
+.row {  
+    display: flex;
+    text-align:center;
+  }
+  
+  /* Create two unequal columns that sits next to each other */
+  /* Sidebar/left column */
+  .side {
+    float: left;
+    width: 25%;
+    background-color: #f1f1f1;
+    padding: 10px;
+        
+  }
+  
+  /* Main column */
+  .main {
+    float: left;
+    width: 75%;
+    background-color: #f1f1f1;
+    padding-top: 20px;
+  }
+
+  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 800px) {
+    .side, .main {   
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  
+  /* Fake image, just for this example */
+  .fakeimg {
+    background-color: #aaa;
+    width: 50%;
+    height:120;
+  }
+
+#btnSave-perfil{
+      display: block;
+  }
+.picture{
+    width: 100%;
+} 
+
+.name{
+    display: flex;
+    margin-top: 20px;
+}
+
+.email{
+    display: flex;
+}
+
+.info{
+    width: auto;
+}
+
+/* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 700px) {
+    .row {   
+      flex-direction: column;
+    }
+  }
+  
+  
+

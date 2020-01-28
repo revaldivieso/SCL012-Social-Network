@@ -1,0 +1,29 @@
+[debug] [2020-01-28T02:23:29.588Z] ----------------------------------------------------------------------
+[debug] [2020-01-28T02:23:29.591Z] Command:       /usr/bin/node /usr/bin/firebase serve
+[debug] [2020-01-28T02:23:29.591Z] CLI Version:   7.12.1
+[debug] [2020-01-28T02:23:29.591Z] Platform:      linux
+[debug] [2020-01-28T02:23:29.591Z] Node Version:  v13.5.0
+[debug] [2020-01-28T02:23:29.660Z] Time:          Mon Jan 27 2020 23:23:29 GMT-0300 (hora de verano de Chile)
+[debug] [2020-01-28T02:23:29.660Z] ----------------------------------------------------------------------
+[debug] [2020-01-28T02:23:29.660Z] 
+[debug] [2020-01-28T02:23:29.717Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-01-28T02:23:29.717Z] > authorizing via signed-in user
+[debug] [2020-01-28T02:23:29.717Z] [iam] checking project bitacora-d5fc4 for permissions ["firebase.projects.get"]
+[debug] [2020-01-28T02:23:29.720Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-01-28T02:23:29.720Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+ <request body omitted>
+[debug] [2020-01-28T02:23:30.000Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-28T02:23:30.032Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/bitacora-d5fc4:testIamPermissions  
+
+[debug] [2020-01-28T02:23:31.271Z] <<< HTTP RESPONSE 200
+[debug] [2020-01-28T02:23:31.274Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/bitacora-d5fc4  
+ 
+[debug] [2020-01-28T02:23:32.580Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/home/vianny/projects/trak-1/SCL012-Social-Network'...
+[info] 
+[debug] [2020-01-28T02:23:32.586Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/bitacora-d5fc4/webApps/-/config  
+ 
+[debug] [2020-01-28T02:23:33.997Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: src
+[info] ✔  hosting: Local server: http://localhost:5000
