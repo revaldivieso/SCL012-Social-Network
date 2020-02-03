@@ -1,8 +1,4 @@
-/* eslint-disable no-unused-vars */
-/* eslint-disable no-console */
-import {
-  perfilInfo,
-} from './perfil.js';
+import { perfilInfo } from './perfil.js';
 
 export const goHome = () => {
   window.location.hash = '/home';
@@ -15,88 +11,96 @@ export const goHome = () => {
           </nav>
           <a id="btnLogOut" href="#" class="logOut">Cerrar sesión</a>
   </header>
-  <body class= "bodyHome">
-        <div id="perfil-content"></div>
-  <div id="writePost" class="post" >  
-  <h4 class="publicaciones">PUBLICACIONES</h4>
-  <div class="postUsers" id="postsUsers"> 
-  <div class="listPosts" id="lista"></div> </div>
-  <textarea name="message" id="message" class="texts"></textarea> 
-  <div id="postButton">
-  <input type="button" value="Postear" id="buttonPost" class="firstButton">
-  </div>           
-  </div>`;
+  <section class= "bodyHome">
+    <div id="perfil-content"></div>
+    <div id="writePost" class="post" >  
+      <h4 class="publicaciones">PUBLICACIONES</h4>
+      <div class="postUsers" id="postsUsers"> 
+        <div class="listPosts" id="lista">
+          <textarea name="message" id="message" class="texts"></textarea> 
+          <div id="postButton">
+            <input type="button" value="Postear" id="buttonPost" class="firstButton">
+          </div>           
+        </div>
+      </div>
+    </div>
+  </section>`;
 
   //CREACIÓN DE POSTS
-const divPosts = document.getElementById('postsUsers');
-const createPosts = firebase.database().ref().child('posts/');
+  const divPosts = document.getElementById('postsUsers');
+  const createPosts = firebase.database().ref().child('posts/');
 
-createPosts.on('child_added', snap => {
-  const thePostDiv = document.createElement('div');
-  thePostDiv.className = 'postBox';
-thePostDiv.innerHTML = `<div id="post${snap.key}">
+  createPosts.on('child_added', snap => {
+    const thePostDiv = document.createElement('div');
+
+    thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
   <div class="encabezado"><img src="${snap.val().authorPic || ''}"><div id="usuario">${snap.val().author}</div></div>
   <hr>
-  <div id="bodyPost" class = "textPosts"><p>${snap.val().body}</p></div>
-  <div id="datePost" class = "textPosts">${snap.val().createDate}</div>
+  <div id="datePost" class="textPosts">${snap.val().createDate}</div>
+  <div id="bodyPost" class="textPosts"><p>${snap.val().body}</p></div>
   <hr>
-  <div id="likes"><input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="firstButton" onclick="window.deletePost(+ snap.key )"> </div>
+  <input type="button" id="likes" value="Like"> 
+  <input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="deleteEdit" onclick="window.deletePost(${snap.key})">
   <hr>
   </div>`;
-  divPosts.appendChild(thePostDiv); 
-});
-//BOTÓN PARA POSTEAR
-document.getElementById('buttonPost').addEventListener('click', () => {
-  const database = firebase.database();
-  const user = firebase.auth().currentUser;
-// SE RECUPERAN DATOS DE USUARIO DESDE CUENTA GMAIL
-  let uid = user.uid;
-  let username = user.displayName;
-  let picture = user.photoURL;
-  let place = '';
-  let date = new Date();
-  let body = document.getElementById('message').value;
-  document.getElementById("message").value="";
-  const writeNewPost = (uid, username, picture, place, body) => {
-  // SE INGRESA UN POST
-   let postData = {
-     author: username,
-     uid: uid,
-     body: body,
-     place: place,
-     starCount: 0,
-     authorPic: picture,
-     createDate: date.toUTCString(),
-   };
-    // SE GENERA UNA NUEVA KEY PARA UN NUEVO POST
-  let newPostKey = firebase.database().ref().child('posts').push().key;
-  document.getElementById("message").value="";
-   // ESCRIBE SIMULTÁNEAMENTE EL CONTENIDO DEL POST EN LA LISTA DE POST , LISTA DE USUARIOS Y LUGARES
-  let updates = {};
-   updates['/posts/' + newPostKey] = postData;
-   updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-   updates['/places/' + place + '/' + newPostKey] = postData;
-   return firebase.database().ref().update(updates);
- }
-  // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
-    writeNewPost(uid, username, picture, place, body);
+    divPosts.appendChild(thePostDiv);
   });
 
-//*********************************************************************************** */
-// FUNCIÓN PARA ELIMINAR POSTS
-window.deletePost = (id) => {
-  const questions = confirm('¿Deseas eliminar post?');
-  if (questions) {
-    const userId = firebase.auth().currentUser.uid;
-    firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
-    firebase.database().ref().child('posts/' + id).remove();
-  while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
-    alert('Se eliminó el post');
-     window.location.reload();
+
+  //BOTÓN PARA POSTEAR
+  document.getElementById('buttonPost').addEventListener('click', () => {
+    const database = firebase.database();
+    const user = firebase.auth().currentUser;
+    console.log(user);
+
+    let uid = user.uid;
+    let username = user.displayName;
+    let picture = user.photoURL;
+    let place = '';
+    let date = new Date();
+    let body = document.getElementById('message').value;
+    document.getElementById('message').value = '';
+    const writeNewPost = (uid, username, picture, place, body) => {
+    
+   // INGRESO DE UN POST   
+      let postData = {
+        author: username,
+        uid: uid,
+        body: body,
+        place: place,
+        starCount: 0,
+        like: [],
+        authorPic: picture,
+        createDate: date.toUTCString(),
+      };
+
+   // SE CREA UNA CLAVE PARA NUEVO POST
+      let newPostKey = firebase.database().ref().child('posts').push().key;
+      document.getElementById('message').value = '';
+      // Write the new post's data simultaneously in the posts list and the user's post list.
+      let updates = {};
+      updates['/posts/' + newPostKey] = postData;
+      updates['/user-posts/' + uid + '/' + newPostKey] = postData;
+      updates['/places/' + place + '/' + newPostKey] = postData;
+      return firebase.database().ref().update(updates);
+    }
+    // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
+    writeNewPost(uid, username, picture, place, body);
+    //  printPost();
+  });
+
+  // FUNCIÓN PARA ELIMINAR POSTS
+  window.deletePost = (id) => {
+    const questions = confirm('¿Deseas eliminar post?');
+    if (questions) {
+      const userId = firebase.auth().currentUser.uid;
+      firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
+      firebase.database().ref().child('posts/' + id).remove();
+      while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
+      alert('Se eliminó el post');
+      location.reload();
     }
   };
-
-  // ***********************************************************************//
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();

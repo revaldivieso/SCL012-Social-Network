@@ -6,14 +6,16 @@ body{
     background-image: url("img/trekking22.jpg");
 }
 .login-register{
-    background-image: url("img/trekking22.jpg");
+    background-image: url("img/bitacora.png");
     background-repeat: no-repeat; 
     background-size: cover; 
     background-attachment: fixed;  
     font-family:'BenchNine', sans-serif !important;
 }
 .bodyHome {
-    background-color: ivory !important;
+    background-color: #bdc3c7 !important;
+    display: flex;
+    justify-content: center;
 }
 
 /* Style Login Page */
@@ -198,6 +200,11 @@ li span p:hover {
     display: flex;
     justify-content: center;
 }
+
+.reset:hover {
+    background-color: #cccccc;
+}
+
 .comeback {  
     color: #ecf0f1;
     text-align: center;
@@ -258,7 +265,7 @@ li span p:hover {
   
   /* Change color on hover */
   .topnav a:hover, a:hover {
-    background-color: #cccccc;
+    background-color: #f2af58;
     color: #34495e;
     font-weight: bold;
     border-radius: 20px;
@@ -368,16 +375,13 @@ li span p:hover {
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
   .side {
-    float: left;
-    width: 25%;
-    background-color: #f1f1f1;
+    width: 100%;
     padding: 10px;  
   }
   
   /* Main column */
   .main {
-    float: left;
-    width: 75%;
+    display: flex;
     background-color: #f1f1f1;
     padding-top: 20px;
   }
@@ -394,9 +398,48 @@ li span p:hover {
     cursor: pointer;
   }
 
-  .btnSave:hover {
-    background-color: #54606b;
+  .btnSave:hover, .firstButton:hover, .deleteEdit:hover {
+    background-color: #425b75;
+    color: #ecf0f1;
   }
+
+  /* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
@@ -445,16 +488,16 @@ li span p:hover {
 /* Style Posts */
 .postsUsers {
     display: flex;
-    overflow:scroll;
-    padding:10px;
+    overflow: scroll;
+    padding: 10px;
 }
 
 .postBox {
     margin-top: 20px;
     margin-left: 10%;
-    background-color: #f2f2f2;
+    background-color: #ecf0f1;
     color: #34495e;
-    width: 75%;
+    width: 80%;
     border-radius: 10px;
 }
 
@@ -466,16 +509,23 @@ li span p:hover {
     font-family: 'Quicksand', sans-serif;
     font-size: 15px; 
     color:#34495e;  
-    margin-top: 15px;
+    margin-top: 10px;
     resize:none;
-    margin-left: 20%;
+    margin-left: 25%;
 }
+
+#buttonPost {
+    height: 40px;
+    padding-top:10px;
+    margin-right:5px;
+    margin-left: 25%;
+ }
 
 .publicaciones {
     font-family: 'Quicksand', sans-serif;
     font-size: 20px;
     font-weight: bolder;
-    color: #b2bec3;
+    color: #34495e;
     text-align: center;
     margin-top: 20px;
 }
@@ -496,42 +546,26 @@ li span p:hover {
     border-style: none;
     width: 100px;
     cursor: pointer;
-    margin-bottom: 50px;
-    float: right;
-}
-   
-.firstButton:hover {
-    background-color: #54606b;
-}
-
-#buttonPost {
-   height: 40px;
-   padding-top:10px;
-   margin-left: 42%;
-   float: left;
+    margin-bottom: 10px;
 }
 
 .encabezado {
-    width: 100%;
-    height:1%;
+    height:2%;
     margin: 1em;
     margin-right: 10px;
+    font-family: 'Quicksand', sans-serif;
     font-size: 100%;
     display: inline-flex;
     text-align: center;
-    color: #3a3333;
     align-content: space-between;
     align-items: baseline;
     padding-top:5px;
-  
     padding-left: 19px;
     padding-right: 19px;
 }
 
 .encabezado img {
-    width: 3%;
-    height:1%;
-    padding: 0;
+    width: 8%;
     align-self: center;  
     border: 1px solid #FFFFFF;
 }
@@ -542,23 +576,50 @@ hr {
 }
 
 #usuario {
-    margin-left: 20px;
+    margin-left: 15px;
     text-align: left;
+    font-size: 20px;
+    color: #34495e;
 }
 
 .textPosts {
     padding-top: 10px;
     padding-bottom: 10px;
     padding-left: 30px;
+    font-family: 'Quicksand', sans-serif;
 }
 
 #likes {
-    height: 20px;
-    background-color: #CAD3C8;
-    padding-left: 30px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    background-color: #cccccc;
+    font-family: 'Quicksand', sans-serif;
+    padding: 10px;
+    margin-left: 25px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    border-style: none;
+    border-radius: 10px;
     color: #34495e;
+    cursor: pointer;
+}
+
+#likes:hover {
+    background-color: #f2af58;
+    color: #34495e;
+
+}
+
+.deleteEdit {
+    background-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    border-style: none;
+    border-radius: 10px;
+    color: #cccccc;
+    cursor: pointer;
 }
 
 #footer {
