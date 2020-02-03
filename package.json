@@ -33,5 +33,18 @@
     "serve": "^11.0.2",
     "stylelint": "^10.1.0",
     "stylelint-config-recommended": "^2.2.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NPGonzalez/SCL012-Social-Network.git"
+  },
+  "author": "",
+  "bugs": {
+    "url": "https://github.com/NPGonzalez/SCL012-Social-Network/issues"
+  },
+  "homepage": "https://github.com/NPGonzalez/SCL012-Social-Network#readme"
 }

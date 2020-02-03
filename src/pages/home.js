@@ -2,7 +2,6 @@ import { perfilInfo } from './perfil.js';
 
 export const goHome = () => {
   window.location.hash = '/home';
-
   document.getElementById('root').innerHTML = `
   <header class="header">
           <img class="logoBar" src="img/logoOcre.png" alt="logo-bitacora"/>
@@ -26,34 +25,25 @@ export const goHome = () => {
       </div>
     </div>
   </section>`;
-
   //CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
   const createPosts = firebase.database().ref().child('posts/');
-
   createPosts.on('child_added', snap => {
     const thePostDiv = document.createElement('div');
-
     thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
   <div class="encabezado"><img src="${snap.val().authorPic || ''}"><div id="usuario">${snap.val().author}</div></div>
   <hr>
   <div id="datePost" class="textPosts">${snap.val().createDate}</div>
   <div id="bodyPost" class="textPosts"><p>${snap.val().body}</p></div>
   <hr>
-  <input type="button" id="like" value="Like"> 
-  <input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="deleteEdit" onclick="window.deletePost(${snap.key})">
-  <hr>
   </div>`;
     divPosts.appendChild(thePostDiv);
   });
-
-
-  // BOTÓN PARA POSTEAR
+// BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
     const user = firebase.auth().currentUser;
-    console.log(user);
-
+// SE RECUPERAN DATOS DE USUARIO REGISTRADO CON GMAIL
     let uid = user.uid;
     let username = user.displayName;
     let picture = user.photoURL;
@@ -61,8 +51,9 @@ export const goHome = () => {
     let date = new Date();
     let body = document.getElementById('message').value;
     document.getElementById('message').value = '';
+// FUNCIÓN QUE ESCRIBE NUEVO POST   
     const writeNewPost = (uid, username, picture, place, body) => {
-      // A post entry.
+// ENTRADA DE UN NUEVO POST
       let postData = {
         author: username,
         uid: uid,
@@ -73,45 +64,40 @@ export const goHome = () => {
         authorPic: picture,
         createDate: date.toUTCString(),
       };
-
-      // Get a key for a new Post.
+// SE GENERA UN ID PARA EL NUEVO POST
       let newPostKey = firebase.database().ref().child('posts').push().key;
       document.getElementById('message').value = '';
-      // Write the new post's data simultaneously in the posts list and the user's post list.
+// SE ESCRIBE LOS DATOS DEL NUEVO POST SIMULTÁNEAMENTE EN LISTA DE POSTS, LISTA DE PROPIETARIOS DE LOS POSTS Y LOS LUGARES ASOCIADOS AL POST
       let updates = {};
       updates['/posts/' + newPostKey] = postData;
       updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       updates['/places/' + place + '/' + newPostKey] = postData;
       return firebase.database().ref().update(updates);
     }
-    // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
+// LLAMADA A FUNCIÓN QUE IMPRIME POSTS
     writeNewPost(uid, username, picture, place, body);
-    //  printPost();
   });
 
-  // FUNCIÓN PARA ELIMINAR POSTS
-  window.deletePost = (id) => {
-    const questions = confirm('¿Deseas eliminar post?');
-    if (questions) {
-      const userId = firebase.auth().currentUser.uid;
-      firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
-      firebase.database().ref().child('posts/' + id).remove();
-      while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
-      alert('Se eliminó el post');
-      location.reload();
-    }
-  };
-
+// FUNCIÓN PARA ELIMINAR POSTS
+//  deletePost = (id) => {
+//     const questions = confirm('¿Deseas eliminar post?');
+//     if (questions) {
+//       const userId = firebase.auth().currentUser.uid;
+//       firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
+//       firebase.database().ref().child('posts/' + id).remove();
+//       while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
+//       alert('Se eliminó el post');
+//       location.reload();
+//     }
+//   };
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
   });
-
   // BOTÓN QUE LLEVA AL HOME
   document.getElementById('home').addEventListener('click', () => {
     goHome();
   });
-
   // BOTÓN DE CIERRE DE SESIÓN LOGOUT
   document.getElementById('btnLogOut').addEventListener('click', () => {
     firebase.auth().signOut()
