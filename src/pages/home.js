@@ -40,7 +40,7 @@ export const goHome = () => {
   <div id="datePost" class="textPosts">${snap.val().createDate}</div>
   <div id="bodyPost" class="textPosts"><p>${snap.val().body}</p></div>
   <hr>
-  <input type="button" id="likes" value="Like"> 
+  <input type="button" id="like" value="Like"> 
   <input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="deleteEdit" onclick="window.deletePost(${snap.key})">
   <hr>
   </div>`;
@@ -48,7 +48,7 @@ export const goHome = () => {
   });
 
 
-  //BOTÓN PARA POSTEAR
+  // BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
     const user = firebase.auth().currentUser;
@@ -89,8 +89,6 @@ export const goHome = () => {
     //  printPost();
   });
 
-  // *********************************************************************************** //
-
   // FUNCIÓN PARA ELIMINAR POSTS
   window.deletePost = (id) => {
     const questions = confirm('¿Deseas eliminar post?');
@@ -103,41 +101,6 @@ export const goHome = () => {
       location.reload();
     }
   };
-
-  // // Función para guardar post editado
-  // window.savePostEdit = (id) => {
-  //   const currentPost = document.getElementById(id);
-  //   const currentTextarea = currentPost.querySelector('.textarea-post');
-  //   const editButton = currentPost.querySelector('.edit-button');
-  //   const saveButton = currentPost.querySelector('.save-button');
-  //   const userId = firebase.auth().currentUser.uid;
-
-  //   firebase.database().ref('posts/')
-  //     .once('value', (postsRef) => { 
-  //       const posts = postsRef.val();
-  //       const postEdit = posts[id];
-
-  //       let postEditRef = {
-  //         id: postEdit.id,
-  //         author: postEdit.author,
-  //         newPost: currentTextarea.value,
-  //         privacy: postEdit.privacy,
-  //         likeCount: postEdit.likeCount,
-  //         usersLikes: postEdit.usersLikes || [],
-  //       };
-
-  //       let updates = {};
-  //       updates['/posts/' + id] = postEditRef;
-  //       updates['/user-posts/' + userId + '/' + id] = postEditRef;
-  //       return firebase.database().ref().update(updates);
-
-  //       currentTextarea.disabled = true;
-  //       saveButton.classList.add('hidden');
-  //       editButton.classList.remove('hidden');
-  //     });
-  // };
-
-  // ***********************************************************************//
 
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {

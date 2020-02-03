@@ -19,35 +19,19 @@ global.firebase = firebasemock.MockFirebaseSdk(
   () => mockprovider,
 );
 
-describe('emailLogin', () => {
-  it('debería ser una función', () => {
-    expect(typeof emailLogin).toBe('function');
-  });
 
-  it('Debería poder iniciar sesion', () => emailLogin('tami.skt@gmail.com', 'tami2020')
-    .then((user) => {
-      expect(user.email).toBe('tami.skt@gmail.com');
-    }));
+test('emailLogin debería ser una función', () => {
+  expect(typeof emailLogin).toEqual('function');
 });
 
-describe('createAccount', () => {
-  it('debería ser una función', () => {
-    expect(typeof createAccount).toBe('function');
-  });
-
-  it('deberia retornar un objeto', () => {
-    expect(typeof createAccount()).toBe('object');
-  });
+test('createAccount debería ser una función', () => {
+  expect(typeof createAccount).toEqual('function');
 });
 
-describe('googleLogin', () => {
-  it('debería ser una función', () => {
-    expect(typeof googleLogin).toBe('function');
-  });
+test('googleLogin debería ser una función', () => {
+  expect(typeof googleLogin).toEqual('function');
 });
 
-describe('getProfilePicUrl', () => {
-  it('debería ser una función', () => {
-    expect(typeof getProfilePicUrl).toBe('function');
-  });
+test('getProfilePicUrl debería ser una función', () => {
+  expect(typeof getProfilePicUrl).toEqual('function');
 });
