@@ -24,7 +24,7 @@ Bitácora nace luego de detectar la necesidad, en un grupo de potenciales usuari
 
 * ### **1.3 Objetivos de la Aplicación**
 - Generar un espacio de encuentro para las personas en donde puedan conocer y recomendar distintos lugares en la ciudad de Santiago y sus alrededores para realizar una excursión.
-- Ofrecer un espacio para que las personas puedan ofrecer su servicios como guía turístico.
+- Generar un espacio donde las personas puedan ofrecer sus servicios como guías turísticos.
 - Ofrecer un espacio donde las personas puedan vender, comprar o intercambiar equipo para realizar alguna excursión.
 
 ## 2. Metodología UX
