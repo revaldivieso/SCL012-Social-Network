@@ -17,14 +17,14 @@ Te presentamos [Bitácora](https://.github.io/SCL012-Social-Network/src/index.ht
 Y cuando te decides por algún lugar...
 - No tienes referencias de este; no sabes que llevar, no tienes con quien ir o no tienes los implemenntos necesarios para tu excursión.
 
-[Bitácora](https://.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
+[Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
 
 * ### **1.2 Problemática del Usuario**
 Bitácora nace luego de detectar la necesidad, en un grupo de potenciales usuarios, de disponer de una aplicación en donde pudiesen encontrar información actualizada aportada por otros usuarios sobre excursiones en Santiago y sus alrededores. 
 
 * ### **1.3 Objetivos de la Aplicación**
 - Generar un espacio de encuentro para las personas en donde puedan conocer y recomendar distintos lugares en la ciudad de Santiago y sus alrededores para realizar una excursión.
-- Ofrecer un espacio para que las personas puedan ofrecer su servicios como guía turístico.
+- Generar un espacio donde las personas puedan ofrecer sus servicios como guías turísticos.
 - Ofrecer un espacio donde las personas puedan vender, comprar o intercambiar equipo para realizar alguna excursión.
 
 ## 2. Metodología UX
