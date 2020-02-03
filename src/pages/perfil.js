@@ -18,7 +18,7 @@ export const perfilInfo = () => {
      </div>`;
 
   /* Button editar perfil */
-  document.getElementById('btnsave-perfil').addEventListener('click', () => {
+  document.getElementById('btnSave-perfil').addEventListener('click', () => {
     perfilEdit();
   });
 };

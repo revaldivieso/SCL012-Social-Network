@@ -425,6 +425,10 @@ li span p:hover {
     width: 100%;
 } 
 
+.ft-perfil{
+    display: table-column;;
+}
+
 .name{
     display: flex;
     margin-top: 20px;
