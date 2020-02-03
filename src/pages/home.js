@@ -2,6 +2,7 @@ import { perfilInfo } from './perfil.js';
 
 export const goHome = () => {
   window.location.hash = '/home';
+
   document.getElementById('root').innerHTML = `
   <header class="header">
           <img class="logoBar" src="img/logoOcre.png" alt="logo-bitacora"/>
@@ -61,20 +62,21 @@ export const goHome = () => {
     let body = document.getElementById('message').value;
     document.getElementById('message').value = '';
     const writeNewPost = (uid, username, picture, place, body) => {
-    
-   // INGRESO DE UN POST   
-      let postData = {
+      // A post entry.
+        let postData = {
         author: username,
         uid: uid,
         body: body,
         place: place,
         starCount: 0,
-        like: [],
+        like: {uid:uid,
+               likes:[]
+        },
         authorPic: picture,
         createDate: date.toUTCString(),
       };
 
-   // SE CREA UNA CLAVE PARA NUEVO POST
+      // Get a key for a new Post.
       let newPostKey = firebase.database().ref().child('posts').push().key;
       document.getElementById('message').value = '';
       // Write the new post's data simultaneously in the posts list and the user's post list.
@@ -89,6 +91,8 @@ export const goHome = () => {
     //  printPost();
   });
 
+  // *********************************************************************************** //
+
   // FUNCIÓN PARA ELIMINAR POSTS
   window.deletePost = (id) => {
     const questions = confirm('¿Deseas eliminar post?');
@@ -101,14 +105,52 @@ export const goHome = () => {
       location.reload();
     }
   };
+
+  // // Función para guardar post editado
+  // window.savePostEdit = (id) => {
+  //   const currentPost = document.getElementById(id);
+  //   const currentTextarea = currentPost.querySelector('.textarea-post');
+  //   const editButton = currentPost.querySelector('.edit-button');
+  //   const saveButton = currentPost.querySelector('.save-button');
+  //   const userId = firebase.auth().currentUser.uid;
+
+  //   firebase.database().ref('posts/')
+  //     .once('value', (postsRef) => { 
+  //       const posts = postsRef.val();
+  //       const postEdit = posts[id];
+
+  //       let postEditRef = {
+  //         id: postEdit.id,
+  //         author: postEdit.author,
+  //         newPost: currentTextarea.value,
+  //         privacy: postEdit.privacy,
+  //         likeCount: postEdit.likeCount,
+  //         usersLikes: postEdit.usersLikes || [],
+  //       };
+
+  //       let updates = {};
+  //       updates['/posts/' + id] = postEditRef;
+  //       updates['/user-posts/' + userId + '/' + id] = postEditRef;
+  //       return firebase.database().ref().update(updates);
+
+  //       currentTextarea.disabled = true;
+  //       saveButton.classList.add('hidden');
+  //       editButton.classList.remove('hidden');
+  //     });
+  // };
+
+  // ***********************************************************************//
+
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
   });
+
   // BOTÓN QUE LLEVA AL HOME
   document.getElementById('home').addEventListener('click', () => {
     goHome();
   });
+
   // BOTÓN DE CIERRE DE SESIÓN LOGOUT
   document.getElementById('btnLogOut').addEventListener('click', () => {
     firebase.auth().signOut()
