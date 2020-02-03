@@ -28,7 +28,7 @@ export const goLoginPage = () => {
               <button class="login" id="btnLogin" type="submit">Iniciar Sesión</button>
               <button class="register" id="registro" type="button">Registrate</button>
               <span id="loginGoogle" class="loginGoogle"><img src="./img/googleLogo2.png" class="icon" alt=""><p>Registrate con Google</p></span>
-              <a id="reset" class="reset" href="url">¿Olvidó su contraseña?</a>
+              
               </li>
           </ul>
         </form>
