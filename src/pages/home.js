@@ -4,10 +4,8 @@ import {
   perfilInfo,
 } from './perfil.js';
 
-
 export const goHome = () => {
   window.location.hash = '/home';
-
   document.getElementById('root').innerHTML = `
   <header class="header">
           <img class="logoBar" src="img/logoOcre.png" alt="logo-bitacora"/>
@@ -29,36 +27,29 @@ export const goHome = () => {
   </div>           
   </div>`;
 
-   
-
   //CREACIÓN DE POSTS
 const divPosts = document.getElementById('postsUsers');
 const createPosts = firebase.database().ref().child('posts/');
 
 createPosts.on('child_added', snap => {
   const thePostDiv = document.createElement('div');
-
+  thePostDiv.className = 'postBox';
 thePostDiv.innerHTML = `<div id="post${snap.key}">
   <div class="encabezado"><img src="${snap.val().authorPic || ''}"><div id="usuario">${snap.val().author}</div></div>
   <hr>
   <div id="bodyPost" class = "textPosts"><p>${snap.val().body}</p></div>
   <div id="datePost" class = "textPosts">${snap.val().createDate}</div>
   <hr>
-  <div id="likes"> <input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="firstButton" onclick="window.deletePost(${snap.key})"></div>
+  <div id="likes"><input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="firstButton" onclick="window.deletePost(+ snap.key )"> </div>
   <hr>
   </div>`;
   divPosts.appendChild(thePostDiv); 
-
 });
-
-
-
 //BOTÓN PARA POSTEAR
 document.getElementById('buttonPost').addEventListener('click', () => {
   const database = firebase.database();
   const user = firebase.auth().currentUser;
-  console.log(user);
-  
+// SE RECUPERAN DATOS DE USUARIO DESDE CUENTA GMAIL
   let uid = user.uid;
   let username = user.displayName;
   let picture = user.photoURL;
@@ -67,7 +58,7 @@ document.getElementById('buttonPost').addEventListener('click', () => {
   let body = document.getElementById('message').value;
   document.getElementById("message").value="";
   const writeNewPost = (uid, username, picture, place, body) => {
-   // A post entry.
+  // SE INGRESA UN POST
    let postData = {
      author: username,
      uid: uid,
@@ -77,11 +68,10 @@ document.getElementById('buttonPost').addEventListener('click', () => {
      authorPic: picture,
      createDate: date.toUTCString(),
    };
- 
-   // Get a key for a new Post.
+    // SE GENERA UNA NUEVA KEY PARA UN NUEVO POST
   let newPostKey = firebase.database().ref().child('posts').push().key;
   document.getElementById("message").value="";
-   // Write the new post's data simultaneously in the posts list and the user's post list.
+   // ESCRIBE SIMULTÁNEAMENTE EL CONTENIDO DEL POST EN LA LISTA DE POST , LISTA DE USUARIOS Y LUGARES
   let updates = {};
    updates['/posts/' + newPostKey] = postData;
    updates['/user-posts/' + uid + '/' + newPostKey] = postData;
@@ -90,17 +80,10 @@ document.getElementById('buttonPost').addEventListener('click', () => {
  }
   // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
     writeNewPost(uid, username, picture, place, body);
-    //  printPost();
   });
 
-
-
-
 //*********************************************************************************** */
-
-
 // FUNCIÓN PARA ELIMINAR POSTS
- 
 window.deletePost = (id) => {
   const questions = confirm('¿Deseas eliminar post?');
   if (questions) {
@@ -109,25 +92,19 @@ window.deletePost = (id) => {
     firebase.database().ref().child('posts/' + id).remove();
   while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
     alert('Se eliminó el post');
-     location.reload();
+     window.location.reload();
     }
   };
 
- 
-
-
   // ***********************************************************************//
-
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
   });
-
   // BOTÓN QUE LLEVA AL HOME
   document.getElementById('home').addEventListener('click', () => {
     goHome();
   });
-
   // BOTÓN DE CIERRE DE SESIÓN LOGOUT
   document.getElementById('btnLogOut').addEventListener('click', () => {
     firebase.auth().signOut()
@@ -139,8 +116,4 @@ window.deletePost = (id) => {
         console.log('error saliendo');
       });
   });
-
 };
-
-
-

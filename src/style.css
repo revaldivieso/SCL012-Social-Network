@@ -2,6 +2,9 @@
     margin: 0;
 }
 
+body{
+    background-image: url("img/trekking22.jpg");
+}
 .login-register{
     background-image: url("img/trekking22.jpg");
     background-repeat: no-repeat; 
@@ -494,6 +497,7 @@ li span p:hover {
     width: 100px;
     cursor: pointer;
     margin-bottom: 50px;
+    float: right;
 }
    
 .firstButton:hover {
@@ -503,8 +507,8 @@ li span p:hover {
 #buttonPost {
    height: 40px;
    padding-top:10px;
-   margin-right:5px;
-   margin-left: 20%;
+   margin-left: 42%;
+   float: left;
 }
 
 .encabezado {
@@ -565,4 +569,3 @@ hr {
     color:white;
     background-color:#5D576B;
 }
-    
