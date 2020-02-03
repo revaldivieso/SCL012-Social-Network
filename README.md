@@ -8,7 +8,7 @@ Instagram, Snapchat, Twitter, Facebook, Twitch, Linkedin, etc. Las redes
 sociales han invadido nuestras vidas. Las amamos u odiamos, y muchos no podemos
 vivir sin ellas.
 
-Te presentamos [Bitácora](https://.github.io/SCL012-Social-Network/src/index.html), la nueva red social turística que despertará al explorador que todos llevamos dentro y nos acompañará a explorar nuevos lugares, llevándonos a vivir inolvidables aventuras.
+Te presentamos [Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/src/index.html), la nueva red social turística que despertará al explorador que todos llevamos dentro y nos acompañará a explorar nuevos lugares, llevándonos a vivir inolvidables aventuras.
 
 * ### **1.1 Usuario**
 ¿Cuántas veces has estado con deseos de salir a disfrutar de un buen lugar en tu tiempo libre y te has encontrado con que:
