@@ -19,18 +19,19 @@ export const perfilInfo = () => {
      </div>`;
 
   /* Button editar perfil */
-  document.getElementById('btnSave-perfil').addEventListener('click', () => {
+  document.getElementById('btnsave-perfil').addEventListener('click', () => {
     perfilEdit();
   });
 };
+
+
 
 const perfilEdit = () => {
   window.location.hash = '/editProfile';
   const user = firebase.auth().currentUser;
   document.getElementById('perfil-content').innerHTML =
     `<div id="modalUser" class="modal">
-             <div class="perfil-section modal-content"
-              <span class="close">&times;</span>
+             <div class="perfil-section"
                     <div class="container-profile">
                         <div class="ft-perfil">
                          <img id= "photoChanges" src= "${user.photoURL}" class="ft" alt="foto de perfil"/>
@@ -41,12 +42,10 @@ const perfilEdit = () => {
                      <input class="datosPerfil" type="text" id="perfilNombre" name="username" Placeholder="Nombre completo" required     value=${user.displayName} />
                      <label for="Email"></label> 
                      <input class="datosPerfil" type="email" id="perfilEmail " name="email" Placeholder="Email" required   value=${user.email} />
-                     <button class="datosPerfil modal" id="save-perfil" type="submit">Actualizar</button>
+                     <button class="datosPerfil" id="save-perfil" type="submit">Actualizar</button>
                 </form>
              </div>
       </div>`;
-
-
 
   /* Button actualizar perfil */
   document.getElementById('save-perfil').addEventListener('click', () => {
@@ -59,13 +58,9 @@ const perfilEdit = () => {
 const updateProfile = () => {
   const name = document.getElementById("perfilNombre").value;
   const user = firebase.auth().currentUser;
-  const photo = document.getElementById("photoChanges").value;
-  const file = ($('#my_file'))[0].files[o];
-  console.log(file);
   if (user != null) {
     user.updateProfile({
       displayName: name,
-      photoURL: photo,
     }).cath((error));
   }
 };
