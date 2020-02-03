@@ -20,7 +20,7 @@ Y cuando te decides por algún lugar...
 [Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
 
 * ### **1.2 Problemática del Usuario**
-Bitácora nace luego de detectar la necesidad, en un grupo de potenciales usuarios, de disponer de una aplicación en donde pudiesen encontrar información actualizada aportada por otros usuarios sobre excursiones en Santiago y sus alrededores. 
+Bitácora nace luego de detectar la necesidad, en un grupo de potenciales usuarios, de disponer de una aplicación en donde pudiesen encontrar información actualizada aportada por otros usuarios sobre excursiones en Santiago y sus alrededores.
 
 * ### **1.3 Objetivos de la Aplicación**
 - Generar un espacio de encuentro para las personas en donde puedan conocer y recomendar distintos lugares en la ciudad de Santiago y sus alrededores para realizar una excursión.
