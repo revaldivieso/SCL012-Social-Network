@@ -139,7 +139,7 @@ Hacer test de usuario con Loom
 
 ## 3. Pruebas Unitarias
 
-Imagen de que pasamos todos los test unitarios
+![unitTest](Readme/unitTest.png)
 
 ## 4. Futuras Mejoras
 Qué le vamos a mejorar

@@ -15,7 +15,6 @@ export const perfilInfo = () => {
              <button id="btnSave-perfil" type="submit" class="btnSave">Editar perfil</button>
          </div>
        </div>
-      
      </div>`;
 
   /* Button editar perfil */
@@ -56,7 +55,7 @@ const perfilEdit = () => {
 
 /* editar Datos perfil */
 const updateProfile = () => {
-  const name = document.getElementById("perfilNombre").value;
+  const name = document.getElementById('perfilNombre').value;
   const user = firebase.auth().currentUser;
   if (user != null) {
     user.updateProfile({

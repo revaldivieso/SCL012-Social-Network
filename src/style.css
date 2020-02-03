@@ -549,7 +549,7 @@ hr {
     font-family: 'Quicksand', sans-serif;
 }
 
-#likes {
+#like {
     background-color: #cccccc;
     font-family: 'Quicksand', sans-serif;
     padding: 10px;
@@ -563,7 +563,7 @@ hr {
     cursor: pointer;
 }
 
-#likes:hover {
+#like:hover {
     background-color: #f2af58;
     color: #34495e;
 
