@@ -39,7 +39,7 @@ export const goHome = () => {
   </div>`;
     divPosts.appendChild(thePostDiv);
   });
-  //BOTÓN PARA POSTEAR
+// BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
     const user = firebase.auth().currentUser;
@@ -51,7 +51,7 @@ export const goHome = () => {
     let date = new Date();
     let body = document.getElementById('message').value;
     document.getElementById('message').value = '';
- // FUNCIÓN QUE ESCRIBE NUEVO POST   
+// FUNCIÓN QUE ESCRIBE NUEVO POST   
     const writeNewPost = (uid, username, picture, place, body) => {
 // ENTRADA DE UN NUEVO POST
       let postData = {
@@ -77,6 +77,7 @@ export const goHome = () => {
 // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
     writeNewPost(uid, username, picture, place, body);
   });
+
 // FUNCIÓN PARA ELIMINAR POSTS
 //  deletePost = (id) => {
 //     const questions = confirm('¿Deseas eliminar post?');
