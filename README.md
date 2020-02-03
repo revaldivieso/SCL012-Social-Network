@@ -17,7 +17,7 @@ Te presentamos [Bitácora](https://.github.io/SCL012-Social-Network/src/index.ht
 Y cuando te decides por algún lugar...
 - No tienes referencias de este; no sabes que llevar, no tienes con quien ir o no tienes los implemenntos necesarios para tu excursión.
 
-[Bitácora](https://.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
+[Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
 
 * ### **1.2 Problemática del Usuario**
 Bitácora nace luego de detectar la necesidad, en un grupo de potenciales usuarios, de disponer de una aplicación en donde pudiesen encontrar información actualizada aportada por otros usuarios sobre excursiones en Santiago y sus alrededores. 
