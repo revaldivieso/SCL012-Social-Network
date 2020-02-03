@@ -1,16 +1,25 @@
 * {
     margin: 0;
-    padding: 0;
 }
 
 body{
     background-image: url("img/trekking22.jpg");
+}
+.login-register{
+    background-image: url("img/bitacora.png");
     background-repeat: no-repeat; 
     background-size: cover; 
     background-attachment: fixed;  
     font-family:'BenchNine', sans-serif !important;
-  }
+}
 
+.bodyHome {
+    background-color: #bdc3c7 !important;
+    display: flex;
+    justify-content: center;
+}
+
+/* Style Login Page */
 .logo {
     margin: 0 auto;
     width: 15%;
@@ -40,17 +49,17 @@ body{
 .form-login {
     margin: 0 auto;
     width: 350px;
-    justify-content: center;
+    display: flex;
+    justify-content: flex-end;
     color: #f2f2f2;
 }
 
 .text-box {
-    align-content: center;
     width: 100%;
     overflow: hidden;
-    font-size: 20px;
-    padding: 8px 0;
-    margin: 8px 0;
+    font-size: 18px;
+    padding: 10px 0;
+    margin: 10px 0;
     border-bottom: 1px solid #ecf0f1;
 }
 
@@ -58,8 +67,6 @@ body{
     border: none;
     outline: none;
     background: none;
-    width: 200px;
-    display: block;
     padding: 12px;
     color: #ecf0f1;
     font-size: 15px;
@@ -82,7 +89,6 @@ body{
     font-family: 'Quicksand', sans-serif;
     font-size: 15px;
     font-weight: bold;
-    display: block;
     border-radius: 10px;
     border-style: none;
     width: 300px;
@@ -117,7 +123,7 @@ body{
 .loginGoogle p {
     font-family: 'Quicksand', sans-serif;
     font-size: 14px;
-    display: inline;
+    display: inline-block;
     color: #ecf0f1;
     margin: auto;
     cursor: pointer;
@@ -131,7 +137,7 @@ li span p:hover {
     border-radius: 20px;
 }
 
-/* Estilos html registro */
+/* Style Register Page */
 .registerBox {
     margin: 10px auto;
     width: 500px;
@@ -182,6 +188,24 @@ li span p:hover {
     background-color: #cccccc;
 }
 
+.reset {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    background: none;
+    border: none;
+    color: #ecf0f1;
+    padding: 10px;
+    margin: auto;
+    margin-top: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+}
+
+.reset:hover {
+    background-color: #cccccc;
+}
+
 .comeback {  
     color: #ecf0f1;
     text-align: center;
@@ -198,47 +222,75 @@ li span p:hover {
     color: #34495e;
     font-weight: bold;
     border-radius: 20px;
+    text-decoration-line: none ;
 }
+
+/* Style Home Page */
 
 
 /* Style the top navigation bar */
-.topnav {
+.logoBar{
+    margin-left: 30px;
+    margin-right: 30px;
+    width: 7%;
+}
+
+.header {
+    display: flex;
+    align-items: center;
     overflow: hidden;
     background-color: #333;
 }
 
-  /* Style the topnav links */
 .topnav a {
     float: left;
     display: block;
-    color: #f2f2f2;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    cursor: pointer;
+}
+
+.logOut {
+    display: block;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-family: 'Quicksand', sans-serif;
+    padding: 14px 16px;
+    text-decoration: none;
+    cursor: pointer;
 }
   
   /* Change color on hover */
-  .topnav a:hover {
-    background-color: #ddd;
-    color: black;
+  .topnav a:hover, a:hover {
+    background-color: #f2af58;
+    color: #34495e;
+    font-weight: bold;
+    border-radius: 20px;
 }
 
-  /* Responsive layout - when the screen is less than 800px wide */
+/* Responsive layout - when the screen is less than 800px wide */
 @media screen and (max-width: 800px) {
     .leftcolumn, .rightcolumn {   
       width: 100%;
       padding: 0;
     }
-}
-  
-  /* Responsive layout - when the screen is less than 360px wide */
-  @media all and (max-width: 360px) {
+
     .logo {
         margin: 0 auto;
         width: 150px;
         display: flex;
         justify-content: center;
-}
+    }
+
+    .logoBar {
+        display: inline-block;
+        width: 8%;
+        margin: 0;
+    }
 
     .fontRoot {  
         color: #ecf0f1;
@@ -255,36 +307,105 @@ li span p:hover {
         justify-content: center;
     }
 
-    .topnav a {
-      float: none;
-      width: 100%;
+    .topnav a, .logOut {
+        font-size: 15px;
+        font-weight: lighter;
     }
 
-}/* Column container */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        background-color: #333;
+    }
+}
+  
+/* Responsive layout - when the screen is less than 360px wide */
+@media screen and (max-width: 400px) {
+    .logo {
+        margin: 0 auto;
+        width: 150px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .logoBar {
+        display: inline-block;
+        width: 15%;
+        margin: 0;
+    }
+
+    .fontRoot {  
+        color: #ecf0f1;
+        text-align: center;
+        margin-bottom: 10px; 
+        font-family: 'Quicksand', sans-serif;
+        font-size: 12px;
+        padding: 20px;
+    } 
+
+    .registerBox {
+        margin: 10px auto;
+        width: 90%;
+        justify-content: center;
+    }
+
+    .topnav a, .logOut {
+        font-size: 12px;
+        font-weight: lighter;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        overflow: hidden;
+        background-color: #333;
+    }
+
+}
+
+/* Style Profile */
+
+/* Column container */
 .row {  
     display: flex;
     text-align:center;
+    font-family: 'Quicksand', sans-serif;
   }
   
-  /* Create two unequal columns that sits next to each other */
-  /* Sidebar/left column */
+/* Create two unequal columns that sits next to each other */
+/* Sidebar/left column */
   .side {
-    float: left;
-    width: 25%;
-    background-color: #f1f1f1;
-    padding: 10px;
-        
+    width: 100%;
+    padding: 10px;  
   }
   
   /* Main column */
   .main {
-    float: left;
-    width: 75%;
+    display: flex;
     background-color: #f1f1f1;
     padding-top: 20px;
   }
 
-  /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
+  .btnSave {
+    color: #ecf0f1;
+    padding: 10px;
+    background-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 14px;
+    border-radius: 10px;
+    border-style: none;
+    width: 100px;
+    cursor: pointer;
+  }
+
+  .btnSave:hover, .firstButton:hover, .deleteEdit:hover {
+    background-color: #425b75;
+    color: #ecf0f1;
+  }
+
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
     .side, .main {   
       width: 100%;
@@ -302,9 +423,14 @@ li span p:hover {
 #btnSave-perfil{
       display: block;
   }
+
 .picture{
     width: 100%;
 } 
+
+.ft-perfil{
+    display: table-column;
+}
 
 .name{
     display: flex;
@@ -325,6 +451,149 @@ li span p:hover {
       flex-direction: column;
     }
   }
-  
-  
 
+/* Style Posts */
+.postsUsers {
+    display: flex;
+    overflow: scroll;
+    padding: 10px;
+}
+
+.postBox {
+    margin-top: 20px;
+    margin-left: 10%;
+    background-color: #ecf0f1;
+    color: #34495e;
+    width: 80%;
+    border-radius: 10px;
+}
+
+.texts {
+    height: 5rem;
+    width: 50%;
+    background-color:#f7f1e3;
+    border-radius: 15px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 15px; 
+    color:#34495e;  
+    margin-top: 10px;
+    resize:none;
+    margin-left: 25%;
+}
+
+#buttonPost {
+    height: 40px;
+    padding-top:10px;
+    margin-right:5px;
+    margin-left: 25%;
+ }
+
+.publicaciones {
+    font-family: 'Quicksand', sans-serif;
+    font-size: 20px;
+    font-weight: bolder;
+    color: #34495e;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.listPosts {
+    font-family: 'Quicksand', sans-serif;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.firstButton {
+    color: #ecf0f1;
+    padding: 10px;
+    background-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 16px;
+    border-radius: 10px;
+    border-style: none;
+    width: 100px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.encabezado {
+    height:2%;
+    margin: 1em;
+    margin-right: 10px;
+    font-family: 'Quicksand', sans-serif;
+    font-size: 100%;
+    display: inline-flex;
+    text-align: center;
+    align-content: space-between;
+    align-items: baseline;
+    padding-top:5px;
+    padding-left: 19px;
+    padding-right: 19px;
+}
+
+.encabezado img {
+    width: 8%;
+    align-self: center;  
+    border: 1px solid #FFFFFF;
+}
+
+hr {
+    height: 1px;
+    background-color: #d6d6d6;
+}
+
+#usuario {
+    margin-left: 15px;
+    text-align: left;
+    font-size: 20px;
+    color: #34495e;
+}
+
+.textPosts {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 30px;
+    font-family: 'Quicksand', sans-serif;
+}
+
+#like {
+    background-color: #cccccc;
+    font-family: 'Quicksand', sans-serif;
+    padding: 10px;
+    margin-left: 25px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    border-style: none;
+    border-radius: 10px;
+    color: #34495e;
+    cursor: pointer;
+}
+
+#like:hover {
+    background-color: #f2af58;
+    color: #34495e;
+
+}
+
+.deleteEdit {
+    background-color: #34495e;
+    font-family: 'Quicksand', sans-serif;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+    margin-right: 5px;
+    border-style: none;
+    border-radius: 10px;
+    color: #cccccc;
+    cursor: pointer;
+}
+
+#footer {
+    clear:both;
+    text-align: center;
+    font-size:12px ;
+    width: 100%;
+    color:white;
+    background-color:#5D576B;
+}

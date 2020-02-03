@@ -5,7 +5,7 @@ import './firebase-init.js';
 // #Observador de autenticación
 export const stateObserved = () => {
   firebase.auth().onAuthStateChanged(function (user) {
-    if (user) {
+    if (user && user.emailVerified) {
       goHome();
     } else {
       goLoginPage();

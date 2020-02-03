@@ -1,38 +1,43 @@
+
 // LOGIN CON EMAIL Y PWD
 export const emailLogin = (email, password) => {
   event.preventDefault();
-  firebase.auth().signInWithEmailAndPassword(email, password).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    if (errorCode === 'auth/wrong-password') {
-      alert('Contraseña Incorrecta');
-    } else {
-      alert(errorMessage);
-    }
-    console.log(error);
-  });
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      if (errorCode === 'auth/wrong-password') {
+        alert('Contraseña Incorrecta');
+      } else {
+        alert(errorMessage);
+      }
+      console.log(error);
+    });
 };
-/* Guardar datos de login en BD */
-const saveData = (userId, name, email, imageUrl) => {
-  firebase.database().ref('users/' + userId).
-  set({
-    username: name,
-    email: email,
-    picture: imageUrl,
-    id: userId,
-  });
-}
+
+/* Validación de correo al usuario */
+const veriFyUser = () => {
+  const user = firebase.auth().currentUser;
+  user.sendEmailVerification().then(() => {
+    alert('Email sent!');
+  }).catch('Email not sent!');
+};
 
 // CREAR CUENTA MAIL Y PWD
-export const createAccount = (email, password) => {
-  firebase.auth().createUserWithEmailAndPassword(email, password).then(() => {
-    saveData(user.uid, username, user.email, picture);
-    check();
-    alert('Tu usuario ha sido registrado! \nConfirma el mensaje de verificación en tu correo y seguidamente puedes Iniciar Sesión');
-    check();
-  }).catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
+export const createAccount = (name, email, password) => {
+  firebase.auth().createUserWithEmailAndPassword(email, password)
+  .then((result) => {
+    return result.user.updateProfile({
+      displayName:name,
+    });
+  })
+  .then(()=>{
+    veriFyUser();
+    alert('User account created');
+  })
+  .catch((error) => {
+    // const errorCode = error.code;
+    // const errorMessage = error.message;
     if (errorCode === 'auth/email en uso') {
       alert('Correo en uso');
     }
@@ -44,18 +49,13 @@ export const createAccount = (email, password) => {
     }
     alert(`${errorCode}`);
   });
-
 };
 
-/* Validación de correo al usuario */
-const check = () => {
-  const user = firebase.auth().currentUser;
-  user.sendEmailVerification().then(() => {}).catch((error) => {});
-}
-
 /* Cambio de contraseña */
-const resetPassword = (email) => {
-  firebase.auth().sendPasswordResetEmail(email)
-    .then(() => {})
-    .catch((error) => {});
-}
+export const resetPassword = () => {
+  firebase.auth().sendPasswordResetEmail(user.email)
+    .then(() => {
+      alert('Email sent!');
+    })
+    .catch('Email not sent!');
+};
