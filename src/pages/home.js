@@ -1,4 +1,6 @@
-import { perfilInfo } from './perfil.js';
+import {
+  perfilInfo
+} from './perfil.js';
 
 export const goHome = () => {
   window.location.hash = '/home';
@@ -30,20 +32,24 @@ export const goHome = () => {
   const createPosts = firebase.database().ref().child('posts/');
   createPosts.on('child_added', snap => {
     const thePostDiv = document.createElement('div');
+    thePostDiv.id = "posts";
     thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
   <div class="encabezado"><img src="${snap.val().authorPic || ''}"><div id="usuario">${snap.val().author}</div></div>
   <hr>
   <div id="datePost" class="textPosts">${snap.val().createDate}</div>
   <div id="bodyPost" class="textPosts"><p>${snap.val().body}</p></div>
+  <input type="button" value="Eliminar" id="buttonRemove${snap.key}" class="deleteEdit" onclick="window.deletePost('${snap.key}')">
   <hr>
   </div>`;
     divPosts.appendChild(thePostDiv);
   });
-// BOTÓN PARA POSTEAR
+
+
+  // BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
     const user = firebase.auth().currentUser;
-// SE RECUPERAN DATOS DE USUARIO REGISTRADO CON GMAIL
+    // SE RECUPERAN DATOS DE USUARIO REGISTRADO CON GMAIL
     let uid = user.uid;
     let username = user.displayName;
     let picture = user.photoURL;
@@ -51,9 +57,9 @@ export const goHome = () => {
     let date = new Date();
     let body = document.getElementById('message').value;
     document.getElementById('message').value = '';
-// FUNCIÓN QUE ESCRIBE NUEVO POST   
+    // FUNCIÓN QUE ESCRIBE NUEVO POST   
     const writeNewPost = (uid, username, picture, place, body) => {
-// ENTRADA DE UN NUEVO POST
+      // ENTRADA DE UN NUEVO POST
       let postData = {
         author: username,
         uid: uid,
@@ -64,32 +70,31 @@ export const goHome = () => {
         authorPic: picture,
         createDate: date.toUTCString(),
       };
-// SE GENERA UN ID PARA EL NUEVO POST
+      // SE GENERA UN ID PARA EL NUEVO POST
       let newPostKey = firebase.database().ref().child('posts').push().key;
       document.getElementById('message').value = '';
-// SE ESCRIBE LOS DATOS DEL NUEVO POST SIMULTÁNEAMENTE EN LISTA DE POSTS, LISTA DE PROPIETARIOS DE LOS POSTS Y LOS LUGARES ASOCIADOS AL POST
+      // SE ESCRIBE LOS DATOS DEL NUEVO POST SIMULTÁNEAMENTE EN LISTA DE POSTS, LISTA DE PROPIETARIOS DE LOS POSTS Y LOS LUGARES ASOCIADOS AL POST
       let updates = {};
       updates['/posts/' + newPostKey] = postData;
       updates['/user-posts/' + uid + '/' + newPostKey] = postData;
       updates['/places/' + place + '/' + newPostKey] = postData;
       return firebase.database().ref().update(updates);
     }
-// LLAMADA A FUNCIÓN QUE IMPRIME POSTS
+    // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
     writeNewPost(uid, username, picture, place, body);
   });
 
-// FUNCIÓN PARA ELIMINAR POSTS
-//  deletePost = (id) => {
-//     const questions = confirm('¿Deseas eliminar post?');
-//     if (questions) {
-//       const userId = firebase.auth().currentUser.uid;
-//       firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
-//       firebase.database().ref().child('posts/' + id).remove();
-//       while (thePostDiv.firstChild) thePostDiv.removeChild(thePostDiv.firstChild);
-//       alert('Se eliminó el post');
-//       location.reload();
-//     }
-//   };
+  /*FUNCIÓN PARA ELIMINAR POSTS*/
+  window.deletePost = (id) => {
+    const questions = confirm('¿Deseas eliminar post?');
+    if (questions) {
+      const userId = firebase.auth().currentUser.uid;
+      firebase.database().ref().child('/user-posts/' + userId + '/' + id).remove();
+      firebase.database().ref().child('posts/' + id).remove();
+      const post = document.getElementById("post" + id);
+      post.remove();
+    }
+  };
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
