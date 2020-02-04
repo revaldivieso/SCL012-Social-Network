@@ -15,7 +15,7 @@ Te presentamos [Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/
 - No conoces los lugares que se encuentran en los alrededores de tu ciudad para acampar o bien salir por el día, o simplemente hacer una caminata?.
 
 Y cuando te decides por algún lugar...
-- No tienes referencias de este; no sabes que llevar, no tienes con quien ir o no tienes los implemenntos necesarios para tu excursión.
+- No tienes referencias de este; no sabes qué llevar, no tienes con quién ir o no tienes los implemenntos necesarios para tu excursión.
 
 [Bitácora](https://revaldivieso.github.io/SCL012-Social-Network/src/index.html), es la red social que estabas esperando y que te ayudará a resolver todas las problemáticas antes mencionadas, permitiendo hacer de tus próximas salidas, en tu tiempo libre, una experiencia inolvidable.  
 
@@ -146,8 +146,6 @@ Hacer test de usuario con Loom
 ![unitTest](Readme/unitTest.png)
 
 ## 4. Futuras Mejoras
-Qué le vamos a mejorar
-
 La próxima versión de Bitácora, te permitirá:
 
 - Ofrecer tus servicios como guía a otros usuarios que los necesiten,
