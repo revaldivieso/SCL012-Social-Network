@@ -2,9 +2,6 @@
     margin: 0;
 }
 
-body{
-    background-image: url("img/trekking22.jpg");
-}
 .login-register{
     background-image: url("img/bitacora.png");
     background-repeat: no-repeat; 
@@ -429,7 +426,7 @@ li span p:hover {
 } 
 
 .ft-perfil{
-    display: table-column;
+    display: flex;
 }
 
 .name{

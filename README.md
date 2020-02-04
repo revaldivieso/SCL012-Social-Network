@@ -130,7 +130,12 @@ A continuación, como decidimos que seria el diagrama de flujo de la aplicación
 
 * ### **2.4 Prototipos de Baja Calidad**
 
-Prototipos en balsamiq
+Prototipos en balsamiq.
+#### Pagina de inicio : ![Logo](Readme/prototipobaja1.jpeg)
+
+#### Pagina de registro :  ![Logo](Readme/prototipobaja.jpeg)
+
+
 
 * ### **2.5 Test de Usuario**
 
