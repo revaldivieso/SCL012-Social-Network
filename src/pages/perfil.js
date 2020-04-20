@@ -1,8 +1,7 @@
 export const perfilInfo = () => {
   window.location.hash = '/profile';
   const user = firebase.auth().currentUser;
-  document.getElementById('perfil-content').innerHTML =
-    `<div class="row">
+  document.getElementById('perfil-content').innerHTML = `<div class="row">
        <div class="side">
          <div class="fakeimg">
              <img src= "${user.photoURL}" class="picture" alt="foto de perfil"/>
@@ -23,13 +22,12 @@ export const perfilInfo = () => {
   });
 };
 
-
-
 const perfilEdit = () => {
   window.location.hash = '/editProfile';
   const user = firebase.auth().currentUser;
-  document.getElementById('perfil-content').innerHTML =
-    `<div id="modalUser" class="modal">
+  document.getElementById(
+    'perfil-content'
+  ).innerHTML = `<div id="modalUser" class="modal">
              <div class="perfil-section"
                     <div class="container-profile">
                         <div class="ft-perfil">
@@ -52,14 +50,15 @@ const perfilEdit = () => {
   });
 };
 
-
 /* editar Datos perfil */
 const updateProfile = () => {
   const name = document.getElementById('perfilNombre').value;
   const user = firebase.auth().currentUser;
   if (user != null) {
-    user.updateProfile({
-      displayName: name,
-    }).cath((error));
+    user
+      .updateProfile({
+        displayName: name,
+      })
+      .cath(error);
   }
 };

@@ -1,12 +1,5 @@
-import {
-  googleLogin,
-} from '../lib/google-auth.js';
-
-import {
-  emailLogin,
-  createAccount,
-  resetPassword,
-} from '../lib/index.js';
+import { googleLogin } from '../lib/google-auth.js';
+import { emailLogin, createAccount } from '../lib/index.js';
 
 //  GENERACIÓN DE PÁGINA DE LOGUEO CON FIREBASE
 export const goLoginPage = () => {
@@ -47,10 +40,11 @@ const buildListenerForm = () => {
     });
     // BOTÓN LOGIN CON GOOGLE
     document.getElementById('loginGoogle').addEventListener('click', () => {
-      let variable = googleLogin();
-      variable.then(function(result) {
+      const variable = googleLogin();
+      variable.then(function (result) {
         console.log(result.user);
-        document.getElementById('root').innerHTML="<img src='"+result.user.photoURL+"' />";
+        document.getElementById('root').innerHTML =
+          "<img src='" + result.user.photoURL + "' />";
       });
     });
 
@@ -83,16 +77,17 @@ const buildListenerForm = () => {
       /* button reset password
       document.getElementById('reset').addEventListener('click', () => {
         resetPassword();
-        document.getElementById('root').innerHTML = 
+        document.getElementById('root').innerHTML =
         `<div>
         <form  class="list" action="/form-page" method="post" >
-              <input class="inputLogin" type="email" id="txtMail" name="user_mail" Placeholder="Correo electrónico" />
-         </form>   
+          <input class="inputLogin" type="email" id="txtMail" name="user_mail" Placeholder="Correo electrónico" />
+        </form>
         </div>`
-      });*/
+      }); */
     });
   } catch (e) {
     console.error(e);
-    document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+    document.getElementById('load').innerHTML =
+      'Error loading the Firebase SDK, check the console.';
   }
 };
