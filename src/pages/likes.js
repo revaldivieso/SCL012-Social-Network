@@ -1,4 +1,4 @@
-/* likes */
+/* likes
 export const likePost = (id) => {
   const user = firebase.auth().currentUser;
 
@@ -38,3 +38,4 @@ export const likePost = (id) => {
       console.log('error saliendo');
     });
 };
+*/

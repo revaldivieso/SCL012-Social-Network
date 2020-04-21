@@ -29,22 +29,31 @@ export const goHome = () => {
   // CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
   const createPosts = firebase.database().ref().child('posts/');
+
   createPosts.on('child_added', (snap) => {
     const thePostDiv = document.createElement('div');
     thePostDiv.id = 'posts';
+    const user = firebase.auth().currentUser;
+    const editBtn =
+      snap.val().uid === user.uid
+        ? `<input type="button" value="Editar" id="buttonLike${snap.key}" class="deleteEdit" onclick="window.updatePost('${snap.key}')"></input>`
+        : '';
     thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
   <div class="encabezado"><img src="${
     snap.val().authorPic || ''
   }"><div id="usuario">${snap.val().author}</div></div>
   <hr>
   <div id="datePost" class="textPosts">${snap.val().createDate}</div>
-  <div id="bodyPost" class="textPosts"><p>${snap.val().body}</p></div>
+  <div contenteditable="true" id="bodyPost${snap.key}" class="textPosts">${
+      snap.val().body
+    }</div>
   <input type="button" value="Eliminar" id="buttonRemove${
     snap.key
   }" class="deleteEdit" onclick="window.deletePost('${snap.key}')">
   <input type="button" value="Like (${snap.val().starCount})" id="buttonLike${
       snap.key
     }" class="deleteEdit" onclick="window.likePost('${snap.key}')">
+    ${editBtn}
   <hr>
   </div>`;
     divPosts.appendChild(thePostDiv);
@@ -110,6 +119,7 @@ export const goHome = () => {
   };
   // Función Like post
   const updateStarCount = (postRef, id) => {
+    const key = postRef.key;
     postRef.transaction(
       (post) => {
         if (post) {
@@ -134,39 +144,33 @@ export const goHome = () => {
             'We aborted the transaction (because ada already exists).'
           );
         } else {
+          const data = snapshot.val();
+          const input = document.getElementById(`buttonLike${key}`);
+          input.value = `Like (${data.starCount})`;
           console.log('User ada added!');
         }
         console.log("Ada's data: ", snapshot.val());
       }
     );
   };
-  console.log('updateStarCount');
+
   window.likePost = async (postElement) => {
     const userId = firebase.auth().currentUser.uid;
-    const starCountRef = firebase.database().ref(`/posts/${postElement}`);
+    const postRef = firebase.database().ref(`/posts/${postElement}`);
 
-    updateStarCount(starCountRef, userId);
+    updateStarCount(postRef, userId);
   };
 
-  /* función para editar post
-  window.editPost = (id, content) => {
-    const refPost = firebase.auth().currentUser;
-    return refPost.update({
-      content: content,
-    });
-  }; */
-  /* Función para dar like
-  const likesPost = (idPost, likes) => {
-    const ref = firebase.firestore().collection('likes').doc(idPost);
-    return ref.update({
-      like: likes,
+  /* función para editar post */
+  window.updatePost = (uid) => {
+    const postEdit = document.getElementById(`bodyPost${uid}`);
+    const ref = firebase.database().ref(`posts/${uid}`);
+    const data = ref.val();
+    ref.update({
+      ...data,
+      body: postEdit.innerHTML,
     });
   };
-
-  window.updateLikesOnClick = (post, like) => {
-    return likesPost(post.id, like);
-  }; */
-
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
