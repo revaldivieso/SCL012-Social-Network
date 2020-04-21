@@ -25,6 +25,7 @@ export const goHome = () => {
       </div>
     </div>
   </section>`;
+
   // CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
   const createPosts = firebase.database().ref().child('posts/');
@@ -41,6 +42,9 @@ export const goHome = () => {
   <input type="button" value="Eliminar" id="buttonRemove${
     snap.key
   }" class="deleteEdit" onclick="window.deletePost('${snap.key}')">
+  <input type="button" value="Like (${snap.val().starCount})" id="buttonLike${
+      snap.key
+    }" class="deleteEdit" onclick="window.likePost('${snap.key}')">
   <hr>
   </div>`;
     divPosts.appendChild(thePostDiv);
@@ -63,9 +67,9 @@ export const goHome = () => {
       // ENTRADA DE UN NUEVO POST
       const postData = {
         author: username,
-        uid: uid,
-        body: body,
-        place: place,
+        uid,
+        body,
+        place,
         starCount: 0,
         like: [],
         authorPic: picture,
@@ -76,9 +80,9 @@ export const goHome = () => {
       document.getElementById('message').value = '';
       // SE ESCRIBE LOS DATOS DEL NUEVO POST SIMULTÁNEAMENTE EN LISTA DE POSTS, LISTA DE PROPIETARIOS DE LOS POSTS Y LOS LUGARES ASOCIADOS AL POST
       const updates = {};
-      updates['/posts/' + newPostKey] = postData;
-      updates['/user-posts/' + uid + '/' + newPostKey] = postData;
-      updates['/places/' + place + '/' + newPostKey] = postData;
+      updates[`/posts/${newPostKey}`] = postData;
+      updates[`/user-posts/${uid}/${newPostKey}`] = postData;
+      updates[`/places/${place}/${newPostKey}`] = postData;
       return firebase.database().ref().update(updates);
     };
     // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
@@ -104,6 +108,65 @@ export const goHome = () => {
       post.remove();
     }
   };
+  // Función Like post
+  const updateStarCount = (postRef, id) => {
+    postRef.transaction(
+      (post) => {
+        if (post) {
+          if (post.stars && post.stars[id]) {
+            post.starCount--;
+            post.stars[id] = null;
+          } else {
+            post.starCount++;
+            if (!post.stars) {
+              post.stars = {};
+            }
+            post.stars[id] = true;
+          }
+        }
+        return post;
+      },
+      (error, committed, snapshot) => {
+        if (error) {
+          console.log('Transaction failed abnormally!', error);
+        } else if (!committed) {
+          console.log(
+            'We aborted the transaction (because ada already exists).'
+          );
+        } else {
+          console.log('User ada added!');
+        }
+        console.log("Ada's data: ", snapshot.val());
+      }
+    );
+  };
+  console.log('updateStarCount');
+  window.likePost = async (postElement) => {
+    const userId = firebase.auth().currentUser.uid;
+    const starCountRef = firebase.database().ref(`/posts/${postElement}`);
+
+    updateStarCount(starCountRef, userId);
+  };
+
+  /* función para editar post
+  window.editPost = (id, content) => {
+    const refPost = firebase.auth().currentUser;
+    return refPost.update({
+      content: content,
+    });
+  }; */
+  /* Función para dar like
+  const likesPost = (idPost, likes) => {
+    const ref = firebase.firestore().collection('likes').doc(idPost);
+    return ref.update({
+      like: likes,
+    });
+  };
+
+  window.updateLikesOnClick = (post, like) => {
+    return likesPost(post.id, like);
+  }; */
+
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
     perfilInfo();
