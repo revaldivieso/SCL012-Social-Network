@@ -1,13 +1,13 @@
 // CLAVES DE ACCESO A CONSOLA FIREBASE
 const firebaseConfig = {
-  apiKey: 'AIzaSyDgD6mNHghURun7IwcQZqbREOFcYXY4z-Q',
-  authDomain: 'bitacora-d5fc4.firebaseapp.com',
-  databaseURL: 'https://bitacora-d5fc4.firebaseio.com',
-  projectId: 'bitacora-d5fc4',
-  storageBucket: 'bitacora-d5fc4.appspot.com',
-  messagingSenderId: '336372532933',
-  appId: '1:336372532933:web:5d25b4eb0df322573712ac',
-  measurementId: 'G-YBXSZ9NSY2',
+  apiKey: 'AIzaSyAirR6C1WJOn0rCgtbK-Dd-BsOVUTcwqAI',
+  authDomain: 'bitacora-v1.firebaseapp.com',
+  databaseURL: 'https://bitacora-v1.firebaseio.com',
+  projectId: 'bitacora-v1',
+  storageBucket: 'bitacora-v1.appspot.com',
+  messagingSenderId: '952409946399',
+  appId: '1:952409946399:web:f86aa9902fc852fb51582a',
+  measurementId: 'G-4SJ0PQPP53',
 };
 // INICIALIZACIÓN DE FIREBASE
 firebase.initializeApp(firebaseConfig);

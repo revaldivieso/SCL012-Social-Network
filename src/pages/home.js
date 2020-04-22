@@ -165,11 +165,10 @@ export const goHome = () => {
   window.updatePost = (uid) => {
     const postEdit = document.getElementById(`bodyPost${uid}`);
     const ref = firebase.database().ref(`posts/${uid}`);
-    const data = ref.val();
-    ref.update({
-      ...data,
+    const obj = {
       body: postEdit.innerHTML,
-    });
+    };
+    ref.update(obj);
   };
   // BOTÓN QUE LLEVA AL PERFIL DEL USUARIO
   document.getElementById('btn-perfil').addEventListener('click', (evt) => {
