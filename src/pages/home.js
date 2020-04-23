@@ -16,10 +16,13 @@ export const goHome = () => {
     <div id="writePost" class="post" >  
       <h4 class="publicaciones">PUBLICACIONES</h4>
       <div class="postUsers" id="postsUsers"> 
-        <div class="listPosts" id="lista">
+        <div class="listPosts" id="lista texts">
+          <div id="img-post" class="img"></div>
           <textarea name="message" id="message" class="texts"></textarea> 
           <div id="postButton">
             <input type="button" value="Postear" id="buttonPost" class="firstButton">
+            <button onclick="document.getElementById('file-attach').click()">Adjuntar</button>
+            <input type="file"  onChange="onAttach(event)" style="display:none" name="fichero" value="" id="file-attach" class="hidden">
           </div>           
         </div>
       </div>
@@ -29,6 +32,24 @@ export const goHome = () => {
   // CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
   const createPosts = firebase.database().ref().child('posts/');
+
+  const toBase64 = (file) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = (error) => reject(error);
+    });
+
+  window.onAttach = (evt) => {
+    if (evt && evt.target && evt.target.files && evt.target.files[0]) {
+      const file = evt.target.files[0];
+      const container = document.getElementById('img-post');
+      toBase64(file).then((res) => {
+        container.innerHTML = `<img class="img" src="${res}"/>`;
+      });
+    }
+  };
 
   createPosts.on('child_added', (snap) => {
     const thePostDiv = document.createElement('div');
@@ -47,6 +68,7 @@ export const goHome = () => {
   <div contenteditable="true" id="bodyPost${snap.key}" class="textPosts">${
       snap.val().body
     }</div>
+
   <input type="button" value="Eliminar" id="buttonRemove${
     snap.key
   }" class="deleteEdit" onclick="window.deletePost('${snap.key}')">

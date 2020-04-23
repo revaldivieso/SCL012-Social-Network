@@ -2,12 +2,12 @@
     margin: 0;
 }
 
-.login-register{
+.login-register {
     background-image: url("img/bitacora.png");
-    background-repeat: no-repeat; 
-    background-size: cover; 
-    background-attachment: fixed;  
-    font-family:'BenchNine', sans-serif !important;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: 'BenchNine', sans-serif !important;
 }
 
 .bodyHome {
@@ -31,7 +31,7 @@
 }
 
 #root {
-    height: 100%; 
+    height: 100%;
     display: flex;
     flex-flow: column;
 }
@@ -75,9 +75,9 @@
     outline: none;
 }
 
-::-webkit-input-placeholder { 
-    color: #ecf0f19c; 
-} 
+::-webkit-input-placeholder {
+    color: #ecf0f19c;
+}
 
 .login {
     color: #34495e;
@@ -141,13 +141,13 @@ li span p:hover {
     justify-content: center;
 }
 
-.fontRoot {  
+.fontRoot {
     color: #ecf0f1;
     text-align: center;
-    margin-bottom: 10px; 
+    margin-bottom: 10px;
     font-family: 'Quicksand', sans-serif;
     padding: 20px;
-} 
+}
 
 .inputRegister {
     border: none;
@@ -203,30 +203,30 @@ li span p:hover {
     background-color: #cccccc;
 }
 
-.comeback {  
+.comeback {
     color: #ecf0f1;
     text-align: center;
-    margin: 10px; 
+    margin: 10px;
     font-family: 'Quicksand', sans-serif;
     padding: 10px;
     font-size: 14px;
     text-decoration-line: underline;
     cursor: pointer;
-} 
+}
 
 .comeback:hover {
     background-color: #cccccc;
     color: #34495e;
     font-weight: bold;
     border-radius: 20px;
-    text-decoration-line: none ;
+    text-decoration-line: none;
 }
 
 /* Style Home Page */
 
 
 /* Style the top navigation bar */
-.logoBar{
+.logoBar {
     margin-left: 30px;
     margin-right: 30px;
     width: 7%;
@@ -260,9 +260,10 @@ li span p:hover {
     text-decoration: none;
     cursor: pointer;
 }
-  
-  /* Change color on hover */
-  .topnav a:hover, a:hover {
+
+/* Change color on hover */
+.topnav a:hover,
+a:hover {
     background-color: #f2af58;
     color: #34495e;
     font-weight: bold;
@@ -271,9 +272,11 @@ li span p:hover {
 
 /* Responsive layout - when the screen is less than 800px wide */
 @media screen and (max-width: 800px) {
-    .leftcolumn, .rightcolumn {   
-      width: 100%;
-      padding: 0;
+
+    .leftcolumn,
+    .rightcolumn {
+        width: 100%;
+        padding: 0;
     }
 
     .logo {
@@ -289,14 +292,14 @@ li span p:hover {
         margin: 0;
     }
 
-    .fontRoot {  
+    .fontRoot {
         color: #ecf0f1;
         text-align: center;
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
         font-family: 'Quicksand', sans-serif;
         font-size: 12px;
         padding: 20px;
-    } 
+    }
 
     .registerBox {
         margin: 10px auto;
@@ -304,7 +307,8 @@ li span p:hover {
         justify-content: center;
     }
 
-    .topnav a, .logOut {
+    .topnav a,
+    .logOut {
         font-size: 15px;
         font-weight: lighter;
     }
@@ -316,7 +320,7 @@ li span p:hover {
         background-color: #333;
     }
 }
-  
+
 /* Responsive layout - when the screen is less than 360px wide */
 @media screen and (max-width: 400px) {
     .logo {
@@ -332,14 +336,14 @@ li span p:hover {
         margin: 0;
     }
 
-    .fontRoot {  
+    .fontRoot {
         color: #ecf0f1;
         text-align: center;
-        margin-bottom: 10px; 
+        margin-bottom: 10px;
         font-family: 'Quicksand', sans-serif;
         font-size: 12px;
         padding: 20px;
-    } 
+    }
 
     .registerBox {
         margin: 10px auto;
@@ -347,7 +351,8 @@ li span p:hover {
         justify-content: center;
     }
 
-    .topnav a, .logOut {
+    .topnav a,
+    .logOut {
         font-size: 12px;
         font-weight: lighter;
     }
@@ -364,27 +369,27 @@ li span p:hover {
 /* Style Profile */
 
 /* Column container */
-.row {  
+.row {
     display: flex;
-    text-align:center;
+    text-align: center;
     font-family: 'Quicksand', sans-serif;
-  }
-  
+}
+
 /* Create two unequal columns that sits next to each other */
 /* Sidebar/left column */
-  .side {
+.side {
     width: 100%;
-    padding: 10px;  
-  }
-  
-  /* Main column */
-  .main {
+    padding: 10px;
+}
+
+/* Main column */
+.main {
     display: flex;
     background-color: #f1f1f1;
     padding-top: 20px;
-  }
+}
 
-  .btnSave {
+.btnSave {
     color: #ecf0f1;
     padding: 10px;
     background-color: #34495e;
@@ -394,60 +399,64 @@ li span p:hover {
     border-style: none;
     width: 100px;
     cursor: pointer;
-  }
+}
 
-  .btnSave:hover, .firstButton:hover, .deleteEdit:hover {
+.btnSave:hover,
+.firstButton:hover,
+.deleteEdit:hover {
     background-color: #425b75;
     color: #ecf0f1;
-  }
+}
 
 
 /* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 800px) {
-    .side, .main {   
-      width: 100%;
-      padding: 10px;
+
+    .side,
+    .main {
+        width: 100%;
+        padding: 10px;
     }
-  }
-  
-  /* Fake image, just for this example */
-  .fakeimg {
+}
+
+/* Fake image, just for this example */
+.fakeimg {
     background-color: #aaa;
     width: 50%;
-    height:120;
-  }
+    height: 120;
+}
 
-#btnSave-perfil{
-      display: block;
-  }
+#btnSave-perfil {
+    display: block;
+}
 
-.picture{
+.picture {
     width: 100%;
-} 
+}
 
-.ft-perfil{
+.ft-perfil {
     display: flex;
 }
 
-.name{
+.name {
     display: flex;
     margin-top: 20px;
 }
 
-.email{
+.email {
     display: flex;
 }
 
-.info{
+.info {
     width: auto;
 }
 
 /* Responsive layout - when the screen is less than 700px wide, make the two columns stack on top of each other instead of next to each other */
 @media screen and (max-width: 700px) {
-    .row {   
-      flex-direction: column;
+    .row {
+        flex-direction: column;
     }
-  }
+}
 
 /* Style Posts */
 .postsUsers {
@@ -468,22 +477,22 @@ li span p:hover {
 .texts {
     height: 5rem;
     width: 50%;
-    background-color:#f7f1e3;
+    background-color: #f7f1e3;
     border-radius: 15px;
     font-family: 'Quicksand', sans-serif;
-    font-size: 15px; 
-    color:#34495e;  
+    font-size: 15px;
+    color: #34495e;
     margin-top: 10px;
-    resize:none;
+    resize: none;
     margin-left: 25%;
 }
 
 #buttonPost {
     height: 40px;
-    padding-top:10px;
-    margin-right:5px;
+    padding-top: 10px;
+    margin-right: 5px;
     margin-left: 25%;
- }
+}
 
 .publicaciones {
     font-family: 'Quicksand', sans-serif;
@@ -514,7 +523,7 @@ li span p:hover {
 }
 
 .encabezado {
-    height:2%;
+    height: 2%;
     margin: 1em;
     margin-right: 10px;
     font-family: 'Quicksand', sans-serif;
@@ -523,14 +532,14 @@ li span p:hover {
     text-align: center;
     align-content: space-between;
     align-items: baseline;
-    padding-top:5px;
+    padding-top: 5px;
     padding-left: 19px;
     padding-right: 19px;
 }
 
 .encabezado img {
     width: 8%;
-    align-self: center;  
+    align-self: center;
     border: 1px solid #FFFFFF;
 }
 
@@ -587,10 +596,16 @@ hr {
 }
 
 #footer {
-    clear:both;
+    clear: both;
     text-align: center;
-    font-size:12px ;
+    font-size: 12px;
     width: 100%;
-    color:white;
-    background-color:#5D576B;
+    color: white;
+    background-color: #5D576B;
+}
+
+.img {
+    width: 500px;
+    display: flex;
+    justify-content: center;
 }
