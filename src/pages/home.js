@@ -17,8 +17,10 @@ export const goHome = () => {
       <h4 class="publicaciones">PUBLICACIONES</h4>
       <div class="postUsers" id="postsUsers"> 
         <div class="listPosts" id="lista texts">
+        <div class="post-complet">
           <div id="img-post" class="img"></div>
           <textarea name="message" id="message" class="texts"></textarea> 
+          </div>
           <div id="postButton">
             <input type="button" value="Postear" id="buttonPost" class="firstButton">
             <button onclick="document.getElementById('file-attach').click()">Adjuntar</button>
@@ -32,7 +34,8 @@ export const goHome = () => {
   // CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
   const createPosts = firebase.database().ref().child('posts/');
-
+  let attach = undefined;
+  // Mostrar imagen en el DOM
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
       const reader = new FileReader();
@@ -46,44 +49,64 @@ export const goHome = () => {
       const file = evt.target.files[0];
       const container = document.getElementById('img-post');
       toBase64(file).then((res) => {
+        attach = file;
         container.innerHTML = `<img class="img" src="${res}"/>`;
       });
     }
   };
 
-  createPosts.on('child_added', (snap) => {
+  createPosts.on('child_added', async (snap) => {
     const thePostDiv = document.createElement('div');
     thePostDiv.id = 'posts';
     const user = firebase.auth().currentUser;
-    const editBtn =
-      snap.val().uid === user.uid
-        ? `<input type="button" value="Editar" id="buttonLike${snap.key}" class="deleteEdit" onclick="window.updatePost('${snap.key}')"></input>`
+    const drawPost = (snap, imageUrl) => {
+      const imgHeader = imageUrl
+        ? `<div id="imgPost${snap.key}" class="imgPosts"><img class='imagePosts' src="${imageUrl}" /></div>`
         : '';
-    thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
-  <div class="encabezado"><img src="${
-    snap.val().authorPic || ''
-  }"><div id="usuario">${snap.val().author}</div></div>
-  <hr>
-  <div id="datePost" class="textPosts">${snap.val().createDate}</div>
-  <div contenteditable="true" id="bodyPost${snap.key}" class="textPosts">${
-      snap.val().body
-    }</div>
+      const editBtn =
+        snap.val().uid === user.uid
+          ? `<input type="button" value="Editar" id="buttonLike${snap.key}" class="deleteEdit" onclick="window.updatePost('${snap.key}')"></input>`
+          : '';
+      thePostDiv.innerHTML = `<div class="postBox" id="post${snap.key}">
+<div class="encabezado"><img src="${
+        snap.val().authorPic || ''
+      }"><div id="usuario">${snap.val().author}</div></div>
+<hr>
+<div id="datePost" class="textPosts">${snap.val().createDate}</div>
+${imgHeader}
+<div contenteditable="true" id="bodyPost${snap.key}" class="textPosts">${
+        snap.val().body
+      }</div>
+  
 
-  <input type="button" value="Eliminar" id="buttonRemove${
-    snap.key
-  }" class="deleteEdit" onclick="window.deletePost('${snap.key}')">
-  <input type="button" value="Like (${snap.val().starCount})" id="buttonLike${
-      snap.key
-    }" class="deleteEdit" onclick="window.likePost('${snap.key}')">
-    ${editBtn}
-  <hr>
-  </div>`;
-    divPosts.appendChild(thePostDiv);
+<input type="button" value="Eliminar" id="buttonRemove${
+        snap.key
+      }" class="deleteEdit" onclick="window.deletePost('${snap.key}')">
+<input type="button" value="Like (${snap.val().starCount})" id="buttonLike${
+        snap.key
+      }" class="deleteEdit" onclick="window.likePost('${snap.key}')">
+  ${editBtn}
+<hr>
+</div>`;
+      divPosts.appendChild(thePostDiv);
+    };
+    if (snap.image) {
+      drawPost(snap);
+    } else {
+      try {
+        const imageRef = firebase.storage().ref(snap.val().image);
+        const image = await imageRef.getDownloadURL();
+        drawPost(snap, image);
+      } catch (e) {
+        drawPost(snap);
+      }
+    }
   });
 
   // BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
+    const storageRef = firebase.storage().ref();
     const user = firebase.auth().currentUser;
     // SE RECUPERAN DATOS DE USUARIO REGISTRADO CON GMAIL
     const uid = user.uid;
@@ -93,8 +116,11 @@ export const goHome = () => {
     const date = new Date();
     const body = document.getElementById('message').value;
     document.getElementById('message').value = '';
+    const nameRef = `${date.getTime()}_${attach.name}`;
+    const imageRef = storageRef.child(nameRef);
+    document.getElementById('img-post').value = '';
     // FUNCIÓN QUE ESCRIBE NUEVO POST
-    const writeNewPost = (uid, username, picture, place, body) => {
+    const writeNewPost = (uid, username, picture, place, body, image) => {
       // ENTRADA DE UN NUEVO POST
       const postData = {
         author: username,
@@ -105,6 +131,7 @@ export const goHome = () => {
         like: [],
         authorPic: picture,
         createDate: date.toUTCString(),
+        image,
       };
       // SE GENERA UN ID PARA EL NUEVO POST
       const newPostKey = firebase.database().ref().child('posts').push().key;
@@ -116,8 +143,9 @@ export const goHome = () => {
       updates[`/places/${place}/${newPostKey}`] = postData;
       return firebase.database().ref().update(updates);
     };
+    imageRef.put(attach);
     // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
-    writeNewPost(uid, username, picture, place, body);
+    writeNewPost(uid, username, picture, place, body, nameRef);
   });
 
   /* FUNCIÓN PARA ELIMINAR POSTS */

@@ -605,7 +605,36 @@ hr {
 }
 
 .img {
-    width: 500px;
+    width: 100px;
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.img>img {
+    width: 300px;
+}
+
+.imgPosts {
+    display: flex;
+    justify-content: center;
+}
+
+.imagePosts {
+    width: 30%;
+    height: 30%;
+    display: flex;
+}
+
+.post-complet {
+
+    justify-content: center;
+    width: 100%;
+    flex: 1 1 auto;
+    justify-content: center;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
 }
