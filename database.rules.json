@@ -2,10 +2,22 @@
 // user's ID from the Firebase auth token
 {
   "rules": {
-    "users": {
+    "posts": {
       "$uid": {
-        ".read": "$uid === auth.uid",
-        ".write": "$uid === auth.uid"
+        ".write": "$uuid === auth.uid",
+        ".read": true
+      }
+    },
+    "places": {
+      "$uid": {
+        ".write": "$uuid === auth.uid",
+        ".read": true
+      }
+    },
+    "user-posts": {
+      "$uid": {
+        ".write": "$uuid === auth.uid",
+        ".read": true
       }
     }
   }

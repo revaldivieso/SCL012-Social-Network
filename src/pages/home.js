@@ -33,8 +33,8 @@ export const goHome = () => {
 
   // CREACIÓN DE POSTS
   const divPosts = document.getElementById('postsUsers');
-  const createPosts = firebase.database().ref().child('posts/');
-  let attach = undefined;
+  const createPosts = firebase.database().ref('/posts').orderByKey();
+  let attach;
   // Mostrar imagen en el DOM
   const toBase64 = (file) =>
     new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@ export const goHome = () => {
     const user = firebase.auth().currentUser;
     const drawPost = (snap, imageUrl) => {
       const imgHeader = imageUrl
-        ? `<div id="imgPost${snap.key}" class="imgPosts"><img class='imagePosts' src="${imageUrl}" /></div>`
+        ? `<div id="imgPost${snap.key}" class="imgPosts"><img class="imagePosts" src="${imageUrl}" /></div>`
         : '';
       const editBtn =
         snap.val().uid === user.uid
@@ -90,6 +90,7 @@ ${imgHeader}
 </div>`;
       divPosts.appendChild(thePostDiv);
     };
+
     if (snap.image) {
       drawPost(snap);
     } else {
@@ -102,7 +103,6 @@ ${imgHeader}
       }
     }
   });
-
   // BOTÓN PARA POSTEAR
   document.getElementById('buttonPost').addEventListener('click', () => {
     const database = firebase.database();
@@ -116,9 +116,14 @@ ${imgHeader}
     const date = new Date();
     const body = document.getElementById('message').value;
     document.getElementById('message').value = '';
-    const nameRef = `${date.getTime()}_${attach.name}`;
-    const imageRef = storageRef.child(nameRef);
+    let imageRef;
+    if (attach) {
+      const filename = `${date.getTime()}_${attach.name}`;
+      const nameRef = filename;
+      imageRef = storageRef.child(nameRef);
+    }
     document.getElementById('img-post').value = '';
+
     // FUNCIÓN QUE ESCRIBE NUEVO POST
     const writeNewPost = (uid, username, picture, place, body, image) => {
       // ENTRADA DE UN NUEVO POST
@@ -131,8 +136,10 @@ ${imgHeader}
         like: [],
         authorPic: picture,
         createDate: date.toUTCString(),
-        image,
       };
+      if (image) {
+        postData.image = image;
+      }
       // SE GENERA UN ID PARA EL NUEVO POST
       const newPostKey = firebase.database().ref().child('posts').push().key;
       document.getElementById('message').value = '';
@@ -143,9 +150,19 @@ ${imgHeader}
       updates[`/places/${place}/${newPostKey}`] = postData;
       return firebase.database().ref().update(updates);
     };
-    imageRef.put(attach);
+    if (attach) {
+      imageRef
+        .put(attach)
+        .then((file) => {
+          writeNewPost(uid, username, picture, place, body, file.ref.fullPath);
+        })
+        .catch((err) => {
+          alert(err);
+        });
+    } else {
+      writeNewPost(uid, username, picture, place, body);
+    }
     // LLAMADA A FUNCIÓN QUE IMPRIME POSTS
-    writeNewPost(uid, username, picture, place, body, nameRef);
   });
 
   /* FUNCIÓN PARA ELIMINAR POSTS */
